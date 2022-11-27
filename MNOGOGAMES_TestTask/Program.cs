@@ -18,5 +18,5 @@ while(true)
 
         totalMessagesCount++;
     }
-    
 }
+

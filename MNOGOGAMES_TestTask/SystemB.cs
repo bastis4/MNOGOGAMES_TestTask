@@ -1,4 +1,6 @@
-﻿namespace MNOGOGAMES_TestTask
+﻿using System.Threading;
+
+namespace MNOGOGAMES_TestTask
 {
     public class SystemB
     {
@@ -22,14 +24,16 @@
             {
                 _isMonitoringStarted = true;
 
-                _monitorThread = new Thread(() => MonitorMessageQueue());
-                _monitorThread.Start();
+                //_monitorThread = new Thread(() =>  MonitorMessageQueue());
+                _monitorThread = new Thread(new ParameterizedThreadStart(MonitorMessageQueue));
+                _monitorThread.Start(_cts.Token);
             }
         }
 
-        private void MonitorMessageQueue()
+        private void MonitorMessageQueue(object obj)
         {
-            while (_isMonitoringStarted)
+            var ct = (CancellationToken)obj;
+            while (_isMonitoringStarted && !ct.IsCancellationRequested)
             {
                 if (_messageQueue.TryGetMessage(out var message))
                 {
