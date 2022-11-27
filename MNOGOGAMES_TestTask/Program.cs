@@ -9,9 +9,9 @@ var systemB = new SystemB(queue);
 systemB.StartMonitoring();
 
 var totalMessagesCount = 0;
-while(true)
+while (true)
 {
-    if(totalMessagesCount < 20)
+    if (totalMessagesCount < 20)
     {
         var message = systemA.GenerateMessage();
         queue.Add(message);
@@ -19,4 +19,5 @@ while(true)
         totalMessagesCount++;
     }
 }
+
 
