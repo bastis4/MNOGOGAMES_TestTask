@@ -25,7 +25,7 @@ namespace MNOGOGAMES_TestTask
                 _isMonitoringStarted = true;
 
                 //_monitorThread = new Thread(() =>  MonitorMessageQueue());
-                _monitorThread = new Thread(new ParameterizedThreadStart(MonitorMessageQueue));
+                _monitorThread = new Thread(MonitorMessageQueue);
                 _monitorThread.Start(_cts.Token);
             }
         }

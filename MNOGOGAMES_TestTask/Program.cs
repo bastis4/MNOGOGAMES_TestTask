@@ -9,8 +9,7 @@ var systemB = new SystemB(queue);
 systemB.StartMonitoring();
 
 var totalMessagesCount = 0;
-
-for (int i = 0; i < 20; i++)
+while (true)
 {
     if (totalMessagesCount < 20)
     {
@@ -19,10 +18,5 @@ for (int i = 0; i < 20; i++)
 
         totalMessagesCount++;
     }
-    i++;
 }
-
-Thread.Sleep(10000);
-
-systemB.StopMonitoring();
 
